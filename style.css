@@ -13878,3 +13878,65 @@ body.entry-open {
     }
 
 }
+
+/* FIX: Remove unwanted grey highlight from mobile wedding timeline */
+
+@media screen and (max-width: 600px) {
+
+    .luxury-day-timeline,
+    .timeline-track,
+    .timeline-center {
+        background-color: transparent !important;
+    }
+
+    .timeline-track::before,
+    .timeline-track::after,
+    .timeline-center::before,
+    .timeline-center::after {
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .timeline-item,
+    .timeline-time,
+    .timeline-marker,
+    .timeline-info {
+        background-color: transparent !important;
+    }
+
+}
+
+/* MOBILE FIX: Remove grey highlight behind venue labels */
+
+@media screen and (max-width: 600px) {
+
+    .venue-label {
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+
+}
+
+/* FINAL MOBILE FIX — venue labels and timeline highlight */
+
+@media screen and (max-width: 600px) {
+
+    .countdown-page .luxury-venue .venue-label,
+    .countdown-page .church-detail .venue-label,
+    .countdown-page .resort-detail .venue-label {
+        background: none !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    .countdown-page .luxury-venue::before,
+    .countdown-page .luxury-venue::after,
+    .countdown-page .venue-label::before,
+    .countdown-page .venue-label::after {
+        background: none !important;
+        box-shadow: none !important;
+    }
+
+}
