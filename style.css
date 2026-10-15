@@ -13905,6 +13905,27 @@ body.entry-open {
     }
 
 }
+/* FINAL FIX: Remove grey highlight from timeline headings on mobile */
 
+@media screen and (max-width: 600px) {
 
+    .luxury-day-timeline .timeline-item,
+    .luxury-day-timeline .timeline-item *,
+    .luxury-day-timeline .timeline-time,
+    .luxury-day-timeline .timeline-info,
+    .luxury-day-timeline .timeline-info *,
+    .luxury-day-timeline h1,
+    .luxury-day-timeline h2,
+    .luxury-day-timeline h3,
+    .luxury-day-timeline h4,
+    .luxury-day-timeline p,
+    .luxury-day-timeline span,
+    .luxury-day-timeline strong {
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+    }
+
+}
 
