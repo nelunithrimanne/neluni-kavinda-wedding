@@ -13929,3 +13929,19 @@ body.entry-open {
 
 }
 
+/* FIX HOLY MASS AND RECEPTION GREY HIGHLIGHT */
+
+@media screen and (max-width: 600px) {
+
+    .luxury-day-timeline .timeline-event,
+    .luxury-day-timeline .timeline-event::before,
+    .luxury-day-timeline .timeline-event::after {
+        background: none !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        outline: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+    }
+
+}
