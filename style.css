@@ -13906,15 +13906,5 @@ body.entry-open {
 
 }
 
-/* MOBILE FIX: Remove grey highlight behind venue labels */
 
-@media screen and (max-width: 600px) {
-
-    .venue-label {
-        background: transparent !important;
-        background-color: transparent !important;
-        box-shadow: none !important;
-    }
-
-}
 
