@@ -13918,25 +13918,3 @@ body.entry-open {
 
 }
 
-/* FINAL MOBILE FIX — venue labels and timeline highlight */
-
-@media screen and (max-width: 600px) {
-
-    .countdown-page .luxury-venue .venue-label,
-    .countdown-page .church-detail .venue-label,
-    .countdown-page .resort-detail .venue-label {
-        background: none !important;
-        background-color: transparent !important;
-        box-shadow: none !important;
-        border: none !important;
-    }
-
-    .countdown-page .luxury-venue::before,
-    .countdown-page .luxury-venue::after,
-    .countdown-page .venue-label::before,
-    .countdown-page .venue-label::after {
-        background: none !important;
-        box-shadow: none !important;
-    }
-
-}
