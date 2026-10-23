@@ -15098,3 +15098,79 @@ body.entry-open #home {
     }
 }
 
+
+
+/* ELEGANT CODE-ONLY CLOSING MONOGRAM */
+.closing-monogram {
+    position: relative;
+    width: 170px;
+    height: 145px;
+    margin: 20px auto 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a47b42;
+}
+
+/* Delicate partial circle */
+.closing-monogram::before {
+    content: "";
+    position: absolute;
+    width: 112px;
+    height: 112px;
+    border: 1px solid rgba(164, 123, 66, 0.7);
+    border-radius: 50%;
+    transform: rotate(-18deg);
+}
+
+/* Fine decorative arc */
+.closing-monogram::after {
+    content: "";
+    position: absolute;
+    width: 135px;
+    height: 135px;
+    border: 1px solid transparent;
+    border-top-color: #a47b42;
+    border-bottom-color: #a47b42;
+    border-radius: 50%;
+    transform: rotate(35deg);
+    opacity: 0.65;
+}
+
+.closing-monogram .monogram-letter {
+    position: absolute;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 88px;
+    font-weight: 400;
+    line-height: 1;
+    text-shadow: 0 1px 1px rgba(115, 78, 34, 0.12);
+}
+
+.closing-monogram .monogram-n {
+    top: 8px;
+    left: 31px;
+    z-index: 2;
+}
+
+.closing-monogram .monogram-k {
+    right: 27px;
+    bottom: 4px;
+    z-index: 3;
+}
+
+.closing-monogram .monogram-heart {
+    position: absolute;
+    right: 16px;
+    top: 15px;
+    z-index: 4;
+    font-size: 18px;
+    color: #a47b42;
+}
+
+@media screen and (max-width: 600px) {
+    .closing-monogram {
+        transform: scale(0.88);
+        margin: 8px auto 16px;
+    }
+}
+
