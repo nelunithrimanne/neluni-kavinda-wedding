@@ -14982,7 +14982,7 @@ body.entry-open #home {
 /* Small phones */
 @media screen and (max-width: 380px) {
     #entryPage.entry-page .entry-photo-area {
-        width: 88vw !important;
+        width: 50vw !important;
         height: 255px !important;
         min-height: 255px !important;
     }
