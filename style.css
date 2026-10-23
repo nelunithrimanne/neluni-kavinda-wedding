@@ -13965,3 +13965,17 @@ body.entry-open #entryPage {
 body.entry-open #home {
     margin-top: 0 !important;
 }
+
+
+/* Reduce the gap between Our Day and Our Moments */
+
+#countdown {
+    padding-bottom: 30px !important;
+    margin-bottom: 0 !important;
+}
+
+#moments {
+    padding-top: 30px !important;
+    margin-top: 0 !important;
+}
+
