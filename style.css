@@ -14747,3 +14747,36 @@ body.entry-open #home {
 }
 
 
+/* ELEGANT WEDDING COUPLE NAMES */
+#entryPage .editorial-names {
+    font-family: "Alex Brush", cursive;
+    font-size: clamp(48px, 9vw, 76px);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: 0;
+    text-align: center;
+    margin: 16px auto 20px;
+    color: #765b3d;
+}
+
+#entryPage .editorial-names span {
+    font-family: "Alex Brush", cursive;
+    font-weight: 400;
+}
+
+#entryPage .editorial-names .ampersand {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 0.55em;
+    font-style: italic;
+    display: block;
+    margin: 0 auto;
+    line-height: 1.1;
+}
+
+@media screen and (max-width: 600px) {
+    #entryPage .editorial-names {
+        font-size: clamp(46px, 12vw, 62px);
+        margin: 12px auto 16px;
+    }
+}
+
