@@ -188,30 +188,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
             }
+           
+/* OPEN THE WEDDING WEBSITE */
 
+document.body.classList.remove("entry-locked");
+document.body.classList.add("entry-open");
 
-            /* ---------------------------------------------
-               OPEN THE WEDDING WEBSITE
-               --------------------------------------------- */
+// Completely hide the entry page
+if (entryPage) {
+    entryPage.classList.add("entry-hidden");
+    entryPage.style.display = "none";
+}
 
-            document.body.classList.remove(
-                "entry-locked"
-            );
-
-            document.body.classList.add(
-                "entry-open"
-            );
-
-
-            /* Hide Entry Page */
-
-            if (entryPage) {
-
-                entryPage.classList.add(
-                    "entry-hidden"
-                );
-
-            }
+// Reset the page to the very top
+window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "instant"
+});
 
 
             /* ---------------------------------------------
