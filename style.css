@@ -15247,3 +15247,43 @@ body.entry-open #home {
         transform: translateY(0);
     }
 }
+
+/* ==========================================
+   RSVP FORM AND THANK-YOU DISPLAY
+   ========================================== */
+
+/* Hide the thank-you message when the page opens */
+#rsvpSuccess {
+    display: none;
+}
+
+/* Hide the complete form after successful submission */
+#rsvpForm.rsvp-submitted {
+    display: none !important;
+}
+
+/* Show only the thank-you message */
+#rsvpSuccess.rsvp-success-visible {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 30px auto;
+    padding: 35px 20px;
+    text-align: center;
+    animation: rsvpThankYouFade 0.8s ease both;
+}
+
+@keyframes rsvpThankYouFade {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
