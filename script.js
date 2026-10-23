@@ -323,78 +323,75 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+/* =====================================================
+   6. RSVP FORM SUBMISSION
+   ===================================================== */
 
-    /* =====================================================
-       6. RSVP FORM SUBMISSION
-       ===================================================== */
+const rsvpForm = document.getElementById("rsvpForm");
+const successMessage = document.getElementById("rsvpSuccess");
 
-    const rsvpForm = document.getElementById("rsvpForm");
-    const successMessage = document.getElementById("rsvpSuccess");
+if (rsvpForm && successMessage) {
 
-    if (rsvpForm && successMessage) {
+    rsvpForm.addEventListener("submit", function (event) {
 
-        rsvpForm.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-            event.preventDefault();
+        if (!rsvpForm.reportValidity()) {
+            return;
+        }
 
-            if (!rsvpForm.reportValidity()) {
-                return;
-            }
+        const submitButton = rsvpForm.querySelector(
+            ".luxury-rsvp-button"
+        );
 
-            const submitButton = rsvpForm.querySelector(
-                ".luxury-rsvp-button"
-            );
+        if (!submitButton || submitButton.disabled) {
+            return;
+        }
 
-            if (!submitButton || submitButton.disabled) {
-                return;
-            }
+        const originalButtonText = submitButton.innerHTML;
 
-            const originalButtonText = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.innerHTML = "SENDING...";
 
-            submitButton.disabled = true;
-            submitButton.innerHTML = "SENDING...";
+        const formData = new FormData(rsvpForm);
 
-            const formData = new FormData(rsvpForm);
+        fetch(rsvpForm.action, {
+            method: "POST",
+            body: formData,
+            mode: "no-cors"
+        })
 
-            fetch(rsvpForm.action, {
-                method: "POST",
-                body: formData,
-                mode: "no-cors"
-            })
+        .then(function () {
 
-         .then(function () {
+            /* Hide the entire form */
+            rsvpForm.classList.add("rsvp-submitted");
+            rsvpForm.style.display = "none";
 
-    /* Hide the entire RSVP form */
-    rsvpForm.style.display = "none";
-    rsvpForm.classList.add("rsvp-submitted");
+            /* Display the thank-you message */
+            successMessage.classList.add("rsvp-success-visible");
+            successMessage.style.display = "block";
 
-    /* Show the Thank You message */
-    successMessage.style.display = "block";
-    successMessage.classList.add("rsvp-success-visible");
-
-    /* Move the page to the Thank You message */
-    successMessage.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
-
-})
-
-            .catch(function (error) {
-
-                console.error("RSVP submission error:", error);
-
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
-
-                alert(
-                    "We could not send your RSVP. Please try again."
-                );
-
+            /* Scroll to the thank-you message */
+            successMessage.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
             });
+
+        })
+
+        .catch(function (error) {
+
+            console.error("RSVP submission error:", error);
+
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+
+            alert(
+                "We could not send your RSVP. Please try again."
+            );
 
         });
 
-    }
+    });
 
-});
+}
