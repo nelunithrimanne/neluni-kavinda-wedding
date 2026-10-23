@@ -89,15 +89,98 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    /* =====================================================
-       WEDDING MUSIC
-       ===================================================== */
+   
+/* =========================================
+   WEDDING MUSIC — FIX
+   ========================================= */
 
-    const musicButton =
-        document.getElementById("musicButton");
+const musicButton = document.getElementById("musicButton");
+const weddingMusic = document.getElementById("weddingMusic");
+const enterStoryButton = document.getElementById("enterStory");
+const entryPage = document.getElementById("entryPage");
 
-    const weddingMusic =
-        document.getElementById("weddingMusic");
+function updateMusicButton(isPlaying) {
+    if (!musicButton) return;
+
+    musicButton.innerHTML = isPlaying ? "Ⅱ" : "♪";
+    musicButton.classList.toggle("playing", isPlaying);
+    musicButton.setAttribute(
+        "aria-label",
+        isPlaying ? "Pause wedding music" : "Play wedding music"
+    );
+}
+
+function playWeddingMusic() {
+    if (!weddingMusic) {
+        console.error("Wedding music audio element was not found.");
+        return;
+    }
+
+    weddingMusic.volume = 0.35;
+
+    const playPromise = weddingMusic.play();
+
+    if (playPromise !== undefined) {
+        playPromise
+            .then(function () {
+                updateMusicButton(true);
+            })
+            .catch(function (error) {
+                updateMusicButton(false);
+                console.error("Wedding music failed to play:", error);
+            });
+    }
+}
+
+/* Start music when ENTER OUR STORY is clicked */
+if (enterStoryButton) {
+    enterStoryButton.addEventListener("click", function () {
+        // Start playback directly from the user's click
+        playWeddingMusic();
+
+        document.body.classList.remove("entry-locked");
+        document.body.classList.add("entry-open");
+
+        if (entryPage) {
+            entryPage.classList.add("entry-hidden");
+            entryPage.style.display = "none";
+        }
+
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "instant"
+        });
+
+        setTimeout(function () {
+            const home = document.getElementById("home");
+
+            if (home) {
+                home.scrollIntoView({ behavior: "smooth" });
+            }
+        }, 300);
+    });
+}
+
+/* Floating music button: play or pause */
+if (musicButton && weddingMusic) {
+    musicButton.addEventListener("click", function () {
+        if (weddingMusic.paused) {
+            playWeddingMusic();
+        } else {
+            weddingMusic.pause();
+            updateMusicButton(false);
+        }
+    });
+
+    weddingMusic.addEventListener("pause", function () {
+        updateMusicButton(false);
+    });
+
+    weddingMusic.addEventListener("play", function () {
+        updateMusicButton(true);
+    });
+}
 
 
     /* -----------------------------------------------------
