@@ -369,8 +369,14 @@ document.addEventListener("DOMContentLoaded", function () {
                  * whether Google Apps Script saved the RSVP.
                  */
 
-                rsvpForm.style.display = "none";
-                successMessage.style.display = "block";
+             rsvpForm.classList.add("rsvp-submitted");
+
+successMessage.classList.add("rsvp-success-visible");
+
+successMessage.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+});
 
             })
 
