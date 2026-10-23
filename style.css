@@ -14099,67 +14099,67 @@ body.entry-open #home {
 }
 
 
-/* =====================================
-   LUXURY ENTRY PAGE PHOTO DESIGN
-   NELUNI & KAVINDA
-===================================== */
 
-#entryPage .entry-photo,
-#entryPage .entry-couple-photo,
-#entryPage .entry-image,
-#entryPage img {
-    box-sizing: border-box;
-}
+/* =========================================
+   NELUNI & KAVINDA — LUXURY ENTRY PHOTO
+========================================= */
 
-/* Elegant rectangular couple photo */
-#entryPage .entry-photo img,
-#entryPage .entry-couple-photo img,
-#entryPage .entry-image img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 40%;
-    border-radius: 2px;
-}
-
-/* Premium photo frame */
-#entryPage .entry-photo,
-#entryPage .entry-couple-photo,
-#entryPage .entry-image {
+#entryPage .entry-photo-main {
     position: relative;
-    width: min(76vw, 340px);
-    height: clamp(290px, 46vh, 410px);
+
+    width: min(76vw, 330px);
+    height: clamp(280px, 42vh, 390px);
+
     margin: 24px auto;
     padding: 7px;
+
+    box-sizing: border-box;
+
     background: #fffdf8;
-    border: 1px solid #c6ad7b;
-    border-radius: 3px;
+    border: 1px solid #c8b184;
+    border-radius: 2px;
+
     box-shadow:
-        0 3px 8px rgba(70, 52, 27, 0.08),
-        0 14px 35px rgba(70, 52, 27, 0.13);
+        0 2px 5px rgba(69, 49, 25, 0.06),
+        0 12px 28px rgba(69, 49, 25, 0.12),
+        0 24px 45px rgba(69, 49, 25, 0.06);
 }
 
-/* Fine inner gold line */
-#entryPage .entry-photo::before,
-#entryPage .entry-couple-photo::before,
-#entryPage .entry-image::before {
+/* Delicate inner frame */
+
+#entryPage .entry-photo-main::before {
     content: "";
     position: absolute;
     inset: 3px;
-    border: 1px solid rgba(198, 173, 123, 0.45);
+
+    border: 1px solid rgba(200, 177, 132, 0.55);
+
     pointer-events: none;
     z-index: 2;
 }
 
-/* Mobile photo proportions */
-@media (max-width: 600px) {
-    #entryPage .entry-photo,
-    #entryPage .entry-couple-photo,
-    #entryPage .entry-image {
-        width: min(72vw, 290px);
-        height: clamp(260px, 38svh, 340px);
-        margin: 20px auto;
-    }
+/* Couple photograph */
+
+#entryPage .entry-photo-main img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center 40%;
+
+    border-radius: 1px;
 }
 
+/* Elegant mobile proportions */
+
+@media (max-width: 600px) {
+    #entryPage .entry-photo-main {
+        width: min(74vw, 285px);
+        height: clamp(250px, 36svh, 320px);
+
+        margin: 18px auto;
+        padding: 6px;
+    }
+}
