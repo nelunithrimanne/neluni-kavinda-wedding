@@ -13968,3 +13968,61 @@ body.entry-open #home {
 
 
 
+/* FIX: Keep the entry page centred after refresh */
+
+#entryPage {
+    position: relative !important;
+    min-height: 100vh;
+    min-height: 100svh;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Keep both floral corner vines in a stable position */
+
+#entryPage .floral-vine-left,
+#entryPage .floral-vine-right {
+    position: absolute !important;
+    top: clamp(12px, 3vh, 28px) !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    animation: none !important;
+    transition: none !important;
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Left corner flower */
+
+#entryPage .floral-vine-left {
+    left: 0 !important;
+    right: auto !important;
+}
+
+/* Right corner flower */
+
+#entryPage .floral-vine-right {
+    right: 0 !important;
+    left: auto !important;
+}
+
+/* Keep the entry content above the decorative flowers */
+
+#entryPage .entry-page-inner {
+    position: relative;
+    z-index: 2;
+}
+
+/* Adjust flowers for mobile screens */
+
+@media (max-width: 600px) {
+    #entryPage .floral-vine-left,
+    #entryPage .floral-vine-right {
+        top: 12px !important;
+        max-width: 48vw;
+    }
+}
+
