@@ -14892,3 +14892,99 @@ body.entry-open #home {
     }
 }
 
+
+
+/* ==================================
+   WEDDING ENTRY — PHOTO AND FLORALS
+   ================================== */
+
+/* Make the photo frame genuinely larger */
+#entryPage.entry-page .entry-photo-area {
+    display: block !important;
+    position: relative !important;
+    width: min(88vw, 390px) !important;
+    max-width: 390px !important;
+    height: 350px !important;
+    min-height: 350px !important;
+    margin: 18px auto 24px !important;
+    flex: 0 0 auto !important;
+    overflow: visible !important;
+}
+
+/* Make the image fill the larger frame */
+#entryPage.entry-page .entry-photo-area .entry-photo-main {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+#entryPage.entry-page .entry-photo-area .entry-photo-main img {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 45% !important;
+}
+
+/* Keep the decorative frame over the photo */
+#entryPage.entry-page .entry-photo-back-frame,
+#entryPage.entry-page .entry-photo-front-line {
+    pointer-events: none !important;
+}
+
+/* Elegant floral vines in the upper corners */
+#entryPage.entry-page {
+    position: relative;
+    isolation: isolate;
+}
+
+#entryPage .editorial-vine {
+    position: absolute !important;
+    top: 8px !important;
+    width: clamp(105px, 29vw, 220px) !important;
+    height: auto !important;
+    display: block !important;
+    opacity: 0.85 !important;
+    pointer-events: none !important;
+    z-index: 3 !important;
+}
+
+#entryPage .editorial-vine-left {
+    left: 0 !important;
+}
+
+#entryPage .editorial-vine-right {
+    right: 0 !important;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 600px) {
+    #entryPage.entry-page .entry-photo-area {
+        width: min(88vw, 340px) !important;
+        max-width: 340px !important;
+        height: 285px !important;
+        min-height: 285px !important;
+    }
+
+    #entryPage .editorial-vine {
+        top: 5px !important;
+        width: clamp(100px, 31vw, 145px) !important;
+    }
+}
+
+/* Small phones */
+@media screen and (max-width: 380px) {
+    #entryPage.entry-page .entry-photo-area {
+        width: 88vw !important;
+        height: 255px !important;
+        min-height: 255px !important;
+    }
+}
+
