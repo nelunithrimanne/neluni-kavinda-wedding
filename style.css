@@ -14100,6 +14100,237 @@ body.entry-open #home {
 
 
 
-#entryPage .entry-photo-main {
-    outline: 5px solid red !important;
+/* =========================================
+   NELUNI & KAVINDA — EDITORIAL ENTRY PAGE
+   Add at the VERY BOTTOM of style.css
+========================================= */
+
+/* 1. Soft editorial background */
+#entryPage.entry-page {
+    position: relative !important;
+    isolation: isolate;
+    overflow: hidden !important;
+    box-sizing: border-box;
+    min-height: 100svh;
+    padding: 34px 20px 42px !important;
+    background:
+        radial-gradient(
+            ellipse at 50% 40%,
+            rgba(255, 255, 255, 0.92) 0%,
+            rgba(255, 253, 248, 0.65) 48%,
+            rgba(237, 229, 215, 0.35) 100%
+        ),
+        #f8f5ef !important;
+    color: #393126;
 }
+
+/* A fine editorial border around the page */
+#entryPage.entry-page::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 12px;
+    border: 1px solid rgba(166, 139, 91, 0.35);
+    pointer-events: none;
+}
+
+/* Keep all main content above the background */
+#entryPage .entry-page-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* 2. Editorial typography */
+#entryPage .entry-couple {
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.045em;
+    line-height: 0.98;
+    color: #44382b !important;
+}
+
+/* Refined wedding headings and small labels */
+#entryPage .entry-page-inner > * {
+    max-width: 100%;
+}
+
+#entryPage .entry-page-inner p {
+    color: #786b59;
+}
+
+#entryPage .entry-page-inner button {
+    font-family: "Montserrat", Arial, sans-serif;
+}
+
+/* 3. Elegant rectangular couple-photo frame */
+#entryPage .entry-photo-area {
+    position: relative !important;
+    display: block !important;
+    width: min(78vw, 330px) !important;
+    height: 390px !important;
+    margin: 26px auto 30px !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+}
+
+/* Offset gold frame behind the photograph */
+#entryPage .entry-photo-area .entry-photo-back-frame {
+    position: absolute !important;
+    inset: 12px -10px -10px 12px !important;
+    width: auto !important;
+    height: auto !important;
+    border: 1px solid #bba16f !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+    z-index: 0 !important;
+}
+
+/* Ivory mount and subtle photographic shadow */
+#entryPage .entry-photo-area .entry-photo-main {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 7px !important;
+    box-sizing: border-box !important;
+    border: 1px solid #c9b58d !important;
+    border-radius: 1px !important;
+    background: #fffdf8 !important;
+    box-shadow:
+        0 5px 12px rgba(54, 43, 30, 0.08),
+        0 18px 38px rgba(54, 43, 30, 0.13) !important;
+    overflow: hidden !important;
+    transform: none !important;
+    z-index: 1 !important;
+    outline: none !important;
+}
+
+/* Keep the existing couple photograph */
+#entryPage .entry-photo-area .entry-photo-main img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: cover !important;
+    object-position: center 40% !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Delicate pencil-like accent line */
+#entryPage .entry-photo-area .entry-photo-front-line {
+    position: absolute !important;
+    left: -13px !important;
+    bottom: 23px !important;
+    width: 39px !important;
+    height: 1px !important;
+    background: #bba16f !important;
+    z-index: 2 !important;
+}
+
+/* 4. Keep your existing floral vines decorative */
+#entryPage .floral-vine {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.68;
+}
+
+/* 5. Elegant entry button */
+#entryPage #enterStory {
+    min-height: 46px;
+    padding: 13px 25px;
+    border: 1px solid #ad9468;
+    border-radius: 0;
+    background: rgba(255, 253, 248, 0.55);
+    color: #514330;
+    font-size: 10px;
+    letter-spacing: 0.19em;
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#entryPage #enterStory:hover {
+    background: #514330;
+    color: #fffdf8;
+    box-shadow: 0 5px 15px rgba(54, 43, 30, 0.12);
+}
+
+/* 6. Balanced mobile layout */
+@media (max-width: 600px) {
+    #entryPage.entry-page {
+        min-height: 100svh;
+        padding: 27px 23px 32px !important;
+    }
+
+    #entryPage.entry-page::before {
+        inset: 8px;
+    }
+
+    #entryPage .entry-page-inner {
+        width: 100%;
+        max-width: 390px;
+    }
+
+    #entryPage .entry-couple {
+        letter-spacing: 0.035em;
+    }
+
+    #entryPage .entry-photo-area {
+        width: min(74vw, 285px) !important;
+        height: min(83vw, 335px) !important;
+        min-height: 285px;
+        margin: 22px auto 27px !important;
+    }
+
+    #entryPage .entry-photo-area .entry-photo-back-frame {
+        inset: 9px -7px -7px 9px !important;
+    }
+
+    #entryPage .entry-photo-area .entry-photo-main {
+        padding: 6px !important;
+    }
+
+    #entryPage .entry-photo-area .entry-photo-front-line {
+        left: -9px !important;
+        bottom: 20px !important;
+        width: 29px !important;
+    }
+
+    #entryPage .floral-vine {
+        opacity: 0.48;
+    }
+
+    #entryPage #enterStory {
+        max-width: 100%;
+        letter-spacing: 0.14em;
+    }
+}
+
+/* Smaller phones */
+@media (max-width: 360px) {
+    #entryPage.entry-page {
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+
+    #entryPage .entry-photo-area {
+        width: min(72vw, 255px) !important;
+        height: 290px !important;
+        min-height: 0;
+    }
+}
+
