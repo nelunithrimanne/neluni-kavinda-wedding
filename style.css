@@ -15034,3 +15034,67 @@ body.entry-open #home {
     }
 }
 
+
+/* FIX ENTRY PAGE BUTTON AND PHOTO HEIGHT */
+
+#entryPage.entry-page {
+    height: auto !important;
+    min-height: 100vh !important;
+    min-height: 100svh !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    align-items: flex-start !important;
+    padding-bottom: 30px !important;
+}
+
+#entryPage.entry-page .entry-page-inner {
+    height: auto !important;
+    min-height: 0 !important;
+    padding-bottom: 18px !important;
+    overflow: visible !important;
+}
+
+#entryPage.entry-page .entry-photo-area {
+    height: 320px !important;
+    min-height: 320px !important;
+    margin: 12px auto 18px !important;
+}
+
+/* Keep the entire button visible and clickable */
+#entryPage.entry-page .editorial-enter-button {
+    display: inline-flex !important;
+    position: relative !important;
+    z-index: 10 !important;
+    width: auto !important;
+    max-width: 90% !important;
+    min-height: 48px !important;
+    height: auto !important;
+    padding: 13px 24px !important;
+    margin: 12px auto 8px !important;
+    white-space: normal !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 600px) {
+    #entryPage.entry-page .entry-photo-area {
+        height: 280px !important;
+        min-height: 280px !important;
+    }
+
+    #entryPage.entry-page .editorial-enter-button {
+        min-height: 46px !important;
+        padding: 12px 20px !important;
+        margin-bottom: 12px !important;
+    }
+}
+
+/* Small phones */
+@media screen and (max-width: 380px) {
+    #entryPage.entry-page .entry-photo-area {
+        height: 255px !important;
+        min-height: 255px !important;
+    }
+}
+
