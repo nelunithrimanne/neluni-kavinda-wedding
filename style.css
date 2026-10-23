@@ -14857,3 +14857,38 @@ body.entry-open #home {
 }
 
 
+/* FINAL FIX — ENLARGE ENTRY PHOTO ON MOBILE */
+
+#entryPage.entry-page .entry-photo-area {
+    width: min(82vw, 340px) !important;
+    max-width: 340px !important;
+    height: 320px !important;
+    min-height: 320px !important;
+    margin: 16px auto 24px !important;
+    flex-shrink: 0 !important;
+}
+
+#entryPage.entry-page .entry-photo-main {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Shorter phone screens */
+@media screen and (max-width: 600px) {
+    #entryPage.entry-page .entry-photo-area {
+        width: min(82vw, 320px) !important;
+        height: 270px !important;
+        min-height: 270px !important;
+    }
+}
+
+/* Very short phone screens */
+@media screen and (max-width: 600px) and (max-height: 680px) {
+    #entryPage.entry-page .entry-photo-area {
+        height: 250px !important;
+        min-height: 250px !important;
+    }
+}
+
