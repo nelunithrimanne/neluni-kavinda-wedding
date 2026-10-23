@@ -14026,3 +14026,76 @@ body.entry-open #home {
     }
 }
 
+
+/* FINAL FIX: ENTRY PAGE CENTERING */
+
+#entryPage.entry-page {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    width: 100%;
+    height: auto !important;
+    min-height: 100vh !important;
+    min-height: 100svh !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+#entryPage .entry-page-inner {
+    position: relative !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    min-height: 100svh !important;
+
+    padding: 65px 20px 30px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+
+    gap: 12px;
+    transform: none !important;
+    animation: none !important;
+}
+
+/* Keep the floral artwork inside the visible top corners */
+
+#entryPage .floral-vine-left,
+#entryPage .floral-vine-right {
+    position: absolute !important;
+    top: 8px !important;
+    z-index: 5 !important;
+
+    transform: none !important;
+    animation: none !important;
+}
+
+/* Mobile adjustment */
+
+@media (max-width: 600px) {
+    #entryPage .entry-page-inner {
+        padding: 75px 16px 30px !important;
+        gap: 10px;
+    }
+
+    #entryPage .floral-vine-left,
+    #entryPage .floral-vine-right {
+        top: 8px !important;
+        max-width: 46vw !important;
+    }
+}
+
+
