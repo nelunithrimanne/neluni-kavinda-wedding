@@ -15029,8 +15029,8 @@ body.entry-open #home {
     #entryPage.entry-page .entry-photo-area {
         width: 225px !important;
         max-width: 74vw !important;
-        height: 315px !important;
-        min-height: 315px !important;
+        height: 300px !important;
+        min-height: 300px !important;
     }
 }
 
