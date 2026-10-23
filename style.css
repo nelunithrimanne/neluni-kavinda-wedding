@@ -15174,3 +15174,37 @@ body.entry-open #home {
     }
 }
 
+/* =========================================
+   RSVP — SHOW ONLY THANK YOU AFTER SUBMISSION
+   ========================================= */
+
+/* Hide the thank-you message before submission */
+#rsvpSuccess {
+    display: none;
+    text-align: center;
+    margin: 35px auto;
+    padding: 35px 20px;
+}
+
+/* Hide the form after submission */
+#rsvpForm.rsvp-submitted {
+    display: none !important;
+}
+
+/* Display the thank-you message */
+#rsvpSuccess.rsvp-success-visible {
+    display: block !important;
+    animation: rsvpThankYouFade 0.8s ease forwards;
+}
+
+@keyframes rsvpThankYouFade {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
