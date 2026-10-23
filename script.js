@@ -1,20 +1,42 @@
 /* =========================================================
-   WEDDING COUNTDOWN
+   NELUNI & KAVINDA — WEDDING WEBSITE JAVASCRIPT
    ========================================================= */
 
-const weddingDate = new Date("January 16, 2027 11:00:00").getTime();
+
+/* =========================================================
+   1. WEDDING COUNTDOWN
+   Wedding date: 16 January 2027, 11:00 AM Sri Lanka time
+   ========================================================= */
 
 function updateCountdown() {
 
-    const now = new Date().getTime();
+    const weddingDate = new Date(
+        2027, 0, 16, 11, 0, 0
+    ).getTime();
+
+    const now = Date.now();
     const difference = weddingDate - now;
+
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
+
+    if (
+        !daysElement ||
+        !hoursElement ||
+        !minutesElement ||
+        !secondsElement
+    ) {
+        return;
+    }
 
     if (difference <= 0) {
 
-        document.getElementById("days").innerText = "00";
-        document.getElementById("hours").innerText = "00";
-        document.getElementById("minutes").innerText = "00";
-        document.getElementById("seconds").innerText = "00";
+        daysElement.textContent = "00";
+        hoursElement.textContent = "00";
+        minutesElement.textContent = "00";
+        secondsElement.textContent = "00";
 
         return;
     }
@@ -35,17 +57,10 @@ function updateCountdown() {
         (difference / 1000) % 60
     );
 
-    document.getElementById("days").innerText =
-        String(days).padStart(2, "0");
-
-    document.getElementById("hours").innerText =
-        String(hours).padStart(2, "0");
-
-    document.getElementById("minutes").innerText =
-        String(minutes).padStart(2, "0");
-
-    document.getElementById("seconds").innerText =
-        String(seconds).padStart(2, "0");
+    daysElement.textContent = String(days).padStart(2, "0");
+    hoursElement.textContent = String(hours).padStart(2, "0");
+    minutesElement.textContent = String(minutes).padStart(2, "0");
+    secondsElement.textContent = String(seconds).padStart(2, "0");
 }
 
 updateCountdown();
@@ -54,261 +69,91 @@ setInterval(updateCountdown, 1000);
 
 
 /* =========================================================
-   SCROLL ANIMATIONS
+   2. WEDDING WEBSITE ENTRY BUTTON
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const sections = document.querySelectorAll(
-        "section:not(.hero)"
-    );
+    const entryPage = document.getElementById("entryPage");
+    const enterStoryButton = document.getElementById("enterStory");
+    const homePage = document.getElementById("home");
 
-    const observer = new IntersectionObserver(
-        function (entries) {
+    const weddingMusic = document.getElementById("weddingMusic");
+    const musicButton = document.getElementById("musicButton");
 
-            entries.forEach(function (entry) {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add("show");
-
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.15
-        }
-    );
-
-    sections.forEach(function (section) {
-
-        observer.observe(section);
-
-    });
-
-
-   
-/* =========================================
-   WEDDING MUSIC — FIX
-   ========================================= */
-
-const musicButton = document.getElementById("musicButton");
-const weddingMusic = document.getElementById("weddingMusic");
-const enterStoryButton = document.getElementById("enterStory");
-const entryPage = document.getElementById("entryPage");
-
-function updateMusicButton(isPlaying) {
-    if (!musicButton) return;
-
-    musicButton.innerHTML = isPlaying ? "Ⅱ" : "♪";
-    musicButton.classList.toggle("playing", isPlaying);
-    musicButton.setAttribute(
-        "aria-label",
-        isPlaying ? "Pause wedding music" : "Play wedding music"
-    );
-}
-
-function playWeddingMusic() {
-    if (!weddingMusic) {
-        console.error("Wedding music audio element was not found.");
-        return;
-    }
-
-    weddingMusic.volume = 0.35;
-
-    const playPromise = weddingMusic.play();
-
-    if (playPromise !== undefined) {
-        playPromise
-            .then(function () {
-                updateMusicButton(true);
-            })
-            .catch(function (error) {
-                updateMusicButton(false);
-                console.error("Wedding music failed to play:", error);
-            });
-    }
-}
-
-/* Start music when ENTER OUR STORY is clicked */
-if (enterStoryButton) {
-    enterStoryButton.addEventListener("click", function () {
-        // Start playback directly from the user's click
-        playWeddingMusic();
-
-        document.body.classList.remove("entry-locked");
-        document.body.classList.add("entry-open");
-
-        if (entryPage) {
-            entryPage.classList.add("entry-hidden");
-            entryPage.style.display = "none";
-        }
-
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "instant"
-        });
-
-        setTimeout(function () {
-            const home = document.getElementById("home");
-
-            if (home) {
-                home.scrollIntoView({ behavior: "smooth" });
-            }
-        }, 300);
-    });
-}
-
-/* Floating music button: play or pause */
-if (musicButton && weddingMusic) {
-    musicButton.addEventListener("click", function () {
-        if (weddingMusic.paused) {
-            playWeddingMusic();
-        } else {
-            weddingMusic.pause();
-            updateMusicButton(false);
-        }
-    });
-
-    weddingMusic.addEventListener("pause", function () {
-        updateMusicButton(false);
-    });
-
-    weddingMusic.addEventListener("play", function () {
-        updateMusicButton(true);
-    });
-}
-
-
-    /* -----------------------------------------------------
-       Helper function for music button appearance
-       ----------------------------------------------------- */
-
-    function setMusicPlaying() {
-
-        if (musicButton) {
-
-            musicButton.innerHTML = "Ⅱ";
-            musicButton.classList.add("playing");
-
-        }
-
-    }
-
-
-    function setMusicPaused() {
-
-        if (musicButton) {
-
-            musicButton.innerHTML = "♪";
-            musicButton.classList.remove("playing");
-
-        }
-
-    }
-
-
-    /* =====================================================
-       ENTER OUR STORY
-       Music starts ONLY from the user's click
-       ===================================================== */
-
-    const enterStoryButton =
-        document.getElementById("enterStory");
-
-    const entryPage =
-        document.getElementById("entryPage");
-
-
-    /* Lock the website while Entry Page is showing */
+    /* Lock scrolling while the entry page is displayed */
 
     document.body.classList.add("entry-locked");
 
+    let entryOpened = false;
+
+    /* Open the website only once */
 
     if (enterStoryButton) {
 
         enterStoryButton.addEventListener("click", function () {
 
-            /* ---------------------------------------------
-               START MUSIC
-               --------------------------------------------- */
+            if (entryOpened) {
+                return;
+            }
+
+            entryOpened = true;
+
+            /* Start wedding music from the user's click */
 
             if (weddingMusic) {
 
                 weddingMusic.volume = 0.35;
 
-                /*
-                 * IMPORTANT:
-                 * play() is called directly inside the
-                 * button click, so the browser recognizes
-                 * it as user interaction.
-                 */
-
                 const playPromise = weddingMusic.play();
 
-                if (playPromise !== undefined) {
+                if (playPromise) {
 
-                    playPromise
-                        .then(function () {
+                    playPromise.catch(function (error) {
 
-                            setMusicPlaying();
+                        console.warn(
+                            "Music could not start. Use the music button to play it.",
+                            error
+                        );
 
-                        })
-                        .catch(function (error) {
-
-                            console.log(
-                                "Music could not start:",
-                                error
-                            );
-
-                            setMusicPaused();
-
-                        });
-
-                }
-
-            }
-           
-/* OPEN THE WEDDING WEBSITE */
-
-document.body.classList.remove("entry-locked");
-document.body.classList.add("entry-open");
-
-// Completely hide the entry page
-if (entryPage) {
-    entryPage.classList.add("entry-hidden");
-    entryPage.style.display = "none";
-}
-
-// Reset the page to the very top
-window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: "instant"
-});
-
-
-            /* ---------------------------------------------
-               SCROLL TO PAGE 01
-               --------------------------------------------- */
-
-            setTimeout(function () {
-
-                const home =
-                    document.getElementById("home");
-
-                if (home) {
-
-                    home.scrollIntoView({
-                        behavior: "smooth"
                     });
 
                 }
 
-            }, 300);
+            }
+
+            /* Hide the entry page */
+
+            if (entryPage) {
+
+                entryPage.classList.add("entry-hidden");
+                entryPage.style.display = "none";
+
+            }
+
+            /* Unlock the website */
+
+            document.body.classList.remove("entry-locked");
+            document.body.classList.add("entry-open");
+
+            /* Return to the beginning of the website */
+
+            window.scrollTo(0, 0);
+
+            /* Scroll to the cover page */
+
+            setTimeout(function () {
+
+                if (homePage) {
+
+                    homePage.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
+
+            }, 100);
 
         });
 
@@ -316,76 +161,234 @@ window.scrollTo({
 
 
     /* =====================================================
-       MUSIC BUTTON
+       3. WEDDING MUSIC BUTTON
        ===================================================== */
 
-    musicButton.addEventListener("click", () => {
+    function updateMusicButton() {
 
-    if (weddingMusic.paused) {
+        if (!musicButton || !weddingMusic) {
+            return;
+        }
 
-        weddingMusic.play();
+        const isPlaying = !weddingMusic.paused;
 
-        musicButton.classList.add("playing");
+        musicButton.textContent = isPlaying ? "Ⅱ" : "♪";
 
-        musicButton.innerHTML = "♪";
+        musicButton.classList.toggle(
+            "playing",
+            isPlaying
+        );
 
-    } else {
-
-        weddingMusic.pause();
-
-        musicButton.classList.remove("playing");
-
-        musicButton.innerHTML = "♩";
-    }
-
-});
-
-    /* =====================================================
-       RSVP GUEST CONTROL
-       ===================================================== */
-
-    const attendanceSelect =
-        document.getElementById("attendance");
-
-    const guestsInput =
-        document.getElementById("guests");
-
-
-    if (attendanceSelect && guestsInput) {
-
-        attendanceSelect.addEventListener(
-            "change",
-            function () {
-
-                /*
-                 * If guest declines, disable number
-                 * of guests.
-                 */
-
-                if (
-                    this.value ===
-                    "Declines with regret"
-                ) {
-
-                    guestsInput.value = "1";
-                    guestsInput.disabled = true;
-
-                }
-
-                else {
-
-                    guestsInput.disabled = false;
-
-                }
-
-            }
+        musicButton.setAttribute(
+            "aria-label",
+            isPlaying
+                ? "Pause wedding music"
+                : "Play wedding music"
         );
 
     }
 
+    if (musicButton && weddingMusic) {
+
+        musicButton.addEventListener("click", function () {
+
+            if (weddingMusic.paused) {
+
+                weddingMusic.volume = 0.35;
+
+                weddingMusic.play().catch(function (error) {
+
+                    console.warn("Unable to play music:", error);
+
+                    updateMusicButton();
+
+                });
+
+            } else {
+
+                weddingMusic.pause();
+
+            }
+
+        });
+
+        weddingMusic.addEventListener(
+            "play",
+            updateMusicButton
+        );
+
+        weddingMusic.addEventListener(
+            "pause",
+            updateMusicButton
+        );
+
+        weddingMusic.addEventListener(
+            "ended",
+            updateMusicButton
+        );
+
+        updateMusicButton();
+
+    }
+
 
     /* =====================================================
-       END OF SCRIPT
+       4. SCROLL ANIMATIONS
        ===================================================== */
+
+    const sections = document.querySelectorAll(
+        "section:not(.hero)"
+    );
+
+    if ("IntersectionObserver" in window) {
+
+        const observer = new IntersectionObserver(
+            function (entries) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.15
+            }
+        );
+
+        sections.forEach(function (section) {
+
+            observer.observe(section);
+
+        });
+
+    } else {
+
+        sections.forEach(function (section) {
+
+            section.classList.add("show");
+
+        });
+
+    }
+
+
+    /* =====================================================
+       5. RSVP GUEST CONTROL
+       ===================================================== */
+
+    const attendanceOptions = document.querySelectorAll(
+        'input[name="attendance"]'
+    );
+
+    const guestsInput = document.getElementById("guestCount");
+
+    function updateGuestOptions() {
+
+        if (!guestsInput) {
+            return;
+        }
+
+        const selectedAttendance = document.querySelector(
+            'input[name="attendance"]:checked'
+        );
+
+        const isDeclining = selectedAttendance &&
+            selectedAttendance.value === "Declines with regret";
+
+        if (isDeclining) {
+
+            guestsInput.value = "1";
+            guestsInput.disabled = true;
+
+        } else {
+
+            guestsInput.disabled = false;
+
+        }
+
+    }
+
+    attendanceOptions.forEach(function (option) {
+
+        option.addEventListener(
+            "change",
+            updateGuestOptions
+        );
+
+    });
+
+
+    /* =====================================================
+       6. RSVP FORM SUBMISSION
+       ===================================================== */
+
+    const rsvpForm = document.getElementById("rsvpForm");
+    const successMessage = document.getElementById("rsvpSuccess");
+
+    if (rsvpForm && successMessage) {
+
+        rsvpForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            if (!rsvpForm.reportValidity()) {
+                return;
+            }
+
+            const submitButton = rsvpForm.querySelector(
+                ".luxury-rsvp-button"
+            );
+
+            if (!submitButton || submitButton.disabled) {
+                return;
+            }
+
+            const originalButtonText = submitButton.innerHTML;
+
+            submitButton.disabled = true;
+            submitButton.innerHTML = "SENDING...";
+
+            const formData = new FormData(rsvpForm);
+
+            fetch(rsvpForm.action, {
+                method: "POST",
+                body: formData,
+                mode: "no-cors"
+            })
+
+            .then(function () {
+
+                /*
+                 * With no-cors, the browser cannot confirm
+                 * whether Google Apps Script saved the RSVP.
+                 */
+
+                rsvpForm.style.display = "none";
+                successMessage.style.display = "block";
+
+            })
+
+            .catch(function (error) {
+
+                console.error("RSVP submission error:", error);
+
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+
+                alert(
+                    "We could not send your RSVP. Please try again."
+                );
+
+            });
+
+        });
+
+    }
 
 });
