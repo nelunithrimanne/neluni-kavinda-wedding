@@ -15208,3 +15208,42 @@ body.entry-open #home {
         transform: translateY(0);
     }
 }
+
+
+/* =========================================
+   RSVP — HIDE FORM AFTER SUBMISSION
+   ========================================= */
+
+/* Hide the thank-you message initially */
+#rsvpSuccess {
+    display: none !important;
+}
+
+/* Completely hide the form after submission */
+#rsvpForm.rsvp-submitted {
+    display: none !important;
+}
+
+/* Display the thank-you message after submission */
+#rsvpSuccess.rsvp-success-visible {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    text-align: center;
+    width: 100%;
+    margin: 30px auto;
+    padding: 35px 20px;
+    animation: thankYouAppear 0.8s ease;
+}
+
+@keyframes thankYouAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
