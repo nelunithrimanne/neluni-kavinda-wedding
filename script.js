@@ -362,23 +362,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 mode: "no-cors"
             })
 
-            .then(function () {
+         .then(function () {
 
-                /*
-                 * With no-cors, the browser cannot confirm
-                 * whether Google Apps Script saved the RSVP.
-                 */
+    /* Hide the entire RSVP form */
+    rsvpForm.style.display = "none";
+    rsvpForm.classList.add("rsvp-submitted");
 
-             rsvpForm.classList.add("rsvp-submitted");
+    /* Show the Thank You message */
+    successMessage.style.display = "block";
+    successMessage.classList.add("rsvp-success-visible");
 
-successMessage.classList.add("rsvp-success-visible");
+    /* Move the page to the Thank You message */
+    successMessage.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
 
-successMessage.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-});
-
-            })
+})
 
             .catch(function (error) {
 
