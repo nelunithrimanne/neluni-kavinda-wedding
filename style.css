@@ -14099,3 +14099,427 @@ body.entry-open #home {
 }
 
 
+
+/* ============================================
+   EDITORIAL WEDDING ENTRY PAGE
+   NELUNI & KAVINDA — 16 JANUARY 2027
+============================================ */
+
+#entryPage.entry-page {
+    --editorial-ink: #40362b;
+    --editorial-muted: #897b67;
+    --editorial-gold: #b39a6c;
+    --editorial-paper: #f8f5ee;
+
+    position: relative !important;
+    isolation: isolate;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    min-height: 100svh !important;
+    padding: 40px 28px !important;
+    overflow: hidden !important;
+    background:
+        radial-gradient(
+            ellipse at 50% 36%,
+            rgba(255, 255, 255, 0.92),
+            rgba(248, 245, 238, 0.72) 55%,
+            rgba(231, 221, 203, 0.55)
+        ),
+        var(--editorial-paper) !important;
+    color: var(--editorial-ink) !important;
+}
+
+/* Thin inner border */
+#entryPage.entry-page::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    inset: 13px;
+    border: 1px solid rgba(179, 154, 108, 0.45);
+    pointer-events: none;
+}
+
+/* Main content */
+#entryPage .entry-page-inner {
+    position: relative !important;
+    z-index: 2 !important;
+    width: 100% !important;
+    max-width: 490px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+}
+
+/* Small uppercase heading */
+#entryPage .editorial-kicker {
+    margin: 0 0 14px !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 9px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.34em !important;
+    line-height: 1.8 !important;
+    color: var(--editorial-muted) !important;
+}
+
+/* Small initials */
+#entryPage .editorial-monogram {
+    margin: 0 auto 8px !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 17px !important;
+    letter-spacing: 0.22em !important;
+    color: var(--editorial-gold) !important;
+}
+
+#entryPage .editorial-monogram span {
+    font-family: "Alex Brush", cursive !important;
+    font-size: 23px !important;
+    letter-spacing: 0 !important;
+}
+
+/* Names */
+#entryPage .editorial-names {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: clamp(43px, 9vw, 65px) !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.015em !important;
+    line-height: 0.88 !important;
+    color: var(--editorial-ink) !important;
+}
+
+#entryPage .editorial-names > span:not(.editorial-ampersand) {
+    display: block !important;
+}
+
+#entryPage .editorial-names .editorial-ampersand {
+    display: block !important;
+    margin: 7px 0 8px !important;
+    font-family: "Alex Brush", cursive !important;
+    font-size: 39px !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+    color: var(--editorial-gold) !important;
+}
+
+/* Fine divider */
+#entryPage .editorial-rule {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    width: 135px !important;
+    margin: 18px auto 11px !important;
+}
+
+#entryPage .editorial-rule > span {
+    display: block !important;
+    width: 43px !important;
+    height: 1px !important;
+    background: rgba(179, 154, 108, 0.8) !important;
+}
+
+#entryPage .editorial-diamond {
+    font-size: 10px !important;
+    color: var(--editorial-gold) !important;
+}
+
+#entryPage .editorial-invitation {
+    margin: 0 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 17px !important;
+    font-style: italic !important;
+    letter-spacing: 0.02em !important;
+    color: var(--editorial-muted) !important;
+}
+
+/* Couple photo composition */
+#entryPage .entry-photo-area {
+    position: relative !important;
+    display: block !important;
+    width: min(72vw, 280px) !important;
+    height: 330px !important;
+    margin: 23px auto 25px !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+}
+
+#entryPage .entry-photo-back-frame {
+    position: absolute !important;
+    inset: 10px -9px -9px 10px !important;
+    width: auto !important;
+    height: auto !important;
+    border: 1px solid var(--editorial-gold) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+    z-index: 0 !important;
+}
+
+#entryPage .entry-photo-main {
+    position: relative !important;
+    z-index: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 6px !important;
+    box-sizing: border-box !important;
+    border: 1px solid rgba(179, 154, 108, 0.75) !important;
+    border-radius: 0 !important;
+    background: #fffdf8 !important;
+    box-shadow:
+        0 7px 16px rgba(61, 48, 32, 0.09),
+        0 19px 34px rgba(61, 48, 32, 0.13) !important;
+    overflow: hidden !important;
+    outline: none !important;
+    transform: none !important;
+}
+
+#entryPage .entry-photo-main img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: cover !important;
+    object-position: center 40% !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Small line crossing the frame edge */
+#entryPage .entry-photo-front-line {
+    position: absolute !important;
+    z-index: 2 !important;
+    left: -13px !important;
+    bottom: 22px !important;
+    width: 36px !important;
+    height: 1px !important;
+    background: var(--editorial-gold) !important;
+}
+
+/* Date */
+#entryPage .editorial-date-label {
+    margin: 0 0 5px !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 8px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.30em !important;
+    color: var(--editorial-muted) !important;
+}
+
+#entryPage .editorial-date {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    margin: 0 !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.12em !important;
+    color: var(--editorial-ink) !important;
+}
+
+#entryPage .editorial-date-divider {
+    color: var(--editorial-gold) !important;
+}
+
+#entryPage .editorial-welcome {
+    margin: 9px 0 18px !important;
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-size: 16px !important;
+    font-style: italic !important;
+    color: var(--editorial-muted) !important;
+}
+
+/* Entry button */
+#entryPage #enterStory.editorial-enter-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 14px !important;
+    min-height: 45px !important;
+    margin: 0 auto !important;
+    padding: 12px 22px !important;
+    border: 1px solid var(--editorial-gold) !important;
+    border-radius: 0 !important;
+    background: rgba(255, 253, 248, 0.62) !important;
+    box-shadow: 0 4px 14px rgba(61, 48, 32, 0.04) !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 9px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.18em !important;
+    color: var(--editorial-ink) !important;
+    cursor: pointer !important;
+    transition: background 0.25s ease, color 0.25s ease !important;
+}
+
+#entryPage #enterStory.editorial-enter-button:hover {
+    background: var(--editorial-ink) !important;
+    color: #fffdf8 !important;
+}
+
+#entryPage .editorial-button-heart {
+    font-size: 16px !important;
+    line-height: 1 !important;
+}
+
+/* Botanical vines */
+#entryPage .editorial-vine {
+    position: absolute !important;
+    z-index: 1 !important;
+    top: 50% !important;
+    width: clamp(95px, 18vw, 180px) !important;
+    transform: translateY(-50%) !important;
+    opacity: 0.55 !important;
+    pointer-events: none !important;
+}
+
+#entryPage .editorial-vine svg {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+#entryPage .editorial-vine-left {
+    left: 0 !important;
+}
+
+#entryPage .editorial-vine-right {
+    right: 0 !important;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    #entryPage.entry-page {
+        min-height: 100vh !important;
+        min-height: 100svh !important;
+        padding: 30px 24px 32px !important;
+    }
+
+    #entryPage.entry-page::before {
+        inset: 8px !important;
+    }
+
+    #entryPage .entry-page-inner {
+        max-width: 390px !important;
+    }
+
+    #entryPage .editorial-kicker {
+        margin-bottom: 10px !important;
+        font-size: 8px !important;
+        letter-spacing: 0.28em !important;
+    }
+
+    #entryPage .editorial-monogram {
+        margin-bottom: 8px !important;
+    }
+
+    #entryPage .editorial-names {
+        font-size: clamp(43px, 12vw, 56px) !important;
+    }
+
+    #entryPage .editorial-names .editorial-ampersand {
+        margin: 6px 0 !important;
+        font-size: 34px !important;
+    }
+
+    #entryPage .editorial-rule {
+        margin-top: 14px !important;
+        margin-bottom: 9px !important;
+    }
+
+    #entryPage .editorial-invitation {
+        font-size: 16px !important;
+    }
+
+    #entryPage .entry-photo-area {
+        width: min(68vw, 255px) !important;
+        height: clamp(255px, 72vw, 300px) !important;
+        margin: 20px auto 23px !important;
+    }
+
+    #entryPage .entry-photo-back-frame {
+        inset: 8px -7px -7px 8px !important;
+    }
+
+    #entryPage .entry-photo-main {
+        padding: 5px !important;
+    }
+
+    #entryPage .entry-photo-front-line {
+        left: -9px !important;
+        bottom: 18px !important;
+        width: 27px !important;
+    }
+
+    #entryPage .editorial-date {
+        gap: 7px !important;
+        font-size: 16px !important;
+        letter-spacing: 0.08em !important;
+    }
+
+    #entryPage .editorial-welcome {
+        margin-top: 7px !important;
+        margin-bottom: 15px !important;
+        font-size: 15px !important;
+    }
+
+    #entryPage .editorial-enter-button {
+        min-height: 43px !important;
+        padding: 11px 17px !important;
+    }
+
+    #entryPage .editorial-vine {
+        top: 48% !important;
+        width: 100px !important;
+        opacity: 0.32 !important;
+    }
+
+    #entryPage .editorial-vine-left {
+        left: -35px !important;
+    }
+
+    #entryPage .editorial-vine-right {
+        right: -35px !important;
+    }
+}
+
+/* Extra-small phones */
+@media (max-width: 360px) {
+    #entryPage.entry-page {
+        padding: 24px 20px 28px !important;
+    }
+
+    #entryPage .entry-photo-area {
+        width: 220px !important;
+        height: 255px !important;
+        margin-top: 18px !important;
+        margin-bottom: 21px !important;
+    }
+
+    #entryPage .editorial-vine {
+        width: 78px !important;
+        opacity: 0.24 !important;
+    }
+
+    #entryPage .editorial-date {
+        gap: 5px !important;
+        font-size: 14px !important;
+    }
+}
+
+
