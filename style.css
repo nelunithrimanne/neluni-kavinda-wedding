@@ -14099,3 +14099,67 @@ body.entry-open #home {
 }
 
 
+/* =====================================
+   LUXURY ENTRY PAGE PHOTO DESIGN
+   NELUNI & KAVINDA
+===================================== */
+
+#entryPage .entry-photo,
+#entryPage .entry-couple-photo,
+#entryPage .entry-image,
+#entryPage img {
+    box-sizing: border-box;
+}
+
+/* Elegant rectangular couple photo */
+#entryPage .entry-photo img,
+#entryPage .entry-couple-photo img,
+#entryPage .entry-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    border-radius: 2px;
+}
+
+/* Premium photo frame */
+#entryPage .entry-photo,
+#entryPage .entry-couple-photo,
+#entryPage .entry-image {
+    position: relative;
+    width: min(76vw, 340px);
+    height: clamp(290px, 46vh, 410px);
+    margin: 24px auto;
+    padding: 7px;
+    background: #fffdf8;
+    border: 1px solid #c6ad7b;
+    border-radius: 3px;
+    box-shadow:
+        0 3px 8px rgba(70, 52, 27, 0.08),
+        0 14px 35px rgba(70, 52, 27, 0.13);
+}
+
+/* Fine inner gold line */
+#entryPage .entry-photo::before,
+#entryPage .entry-couple-photo::before,
+#entryPage .entry-image::before {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border: 1px solid rgba(198, 173, 123, 0.45);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Mobile photo proportions */
+@media (max-width: 600px) {
+    #entryPage .entry-photo,
+    #entryPage .entry-couple-photo,
+    #entryPage .entry-image {
+        width: min(72vw, 290px);
+        height: clamp(260px, 38svh, 340px);
+        margin: 20px auto;
+    }
+}
+
