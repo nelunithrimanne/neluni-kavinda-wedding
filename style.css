@@ -14988,3 +14988,49 @@ body.entry-open #home {
     }
 }
 
+
+
+/* NARROWER AND TALLER COUPLE PHOTO */
+
+#entryPage.entry-page .entry-photo-area {
+    width: 280px !important;
+    max-width: 78vw !important;
+    height: 410px !important;
+    min-height: 410px !important;
+    margin: 20px auto 28px !important;
+    flex: 0 0 auto !important;
+}
+
+#entryPage.entry-page .entry-photo-area .entry-photo-main {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#entryPage.entry-page .entry-photo-area .entry-photo-main img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+}
+
+/* Mobile phones */
+@media screen and (max-width: 600px) {
+    #entryPage.entry-page .entry-photo-area {
+        width: 250px !important;
+        max-width: 76vw !important;
+        height: 350px !important;
+        min-height: 350px !important;
+        margin: 14px auto 22px !important;
+    }
+}
+
+/* Smaller phones */
+@media screen and (max-width: 380px) {
+    #entryPage.entry-page .entry-photo-area {
+        width: 225px !important;
+        max-width: 74vw !important;
+        height: 315px !important;
+        min-height: 315px !important;
+    }
+}
+
