@@ -15287,3 +15287,47 @@ body.entry-open #home {
         transform: translateY(0);
     }
 }
+
+
+/* RSVP thank-you message */
+
+#rsvpSuccess {
+    display: none;
+}
+
+#rsvpSuccess.rsvp-success-visible {
+    display: block !important;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 30px auto;
+    padding: 35px 20px;
+    text-align: center;
+    visibility: visible;
+    opacity: 1;
+    animation: rsvpThankYouFade 0.8s ease both;
+}
+
+.rsvp-thank-you h2 {
+    margin-bottom: 15px;
+}
+
+.rsvp-thank-you p {
+    margin: 10px 0;
+    line-height: 1.8;
+}
+
+#rsvpForm.rsvp-submitted {
+    display: none !important;
+}
+
+@keyframes rsvpThankYouFade {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
