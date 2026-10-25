@@ -10,13 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
        16 January 2027 — 11:00 AM Sri Lanka time
        ===================================================== */
 
+    const weddingDate = new Date(
+        "2027-01-16T11:00:00+05:30"
+    ).getTime();
+
     function updateCountdown() {
-
-        const weddingDate = new Date(
-            "2027-01-16T11:00:00+05:30"
-        ).getTime();
-
-        const difference = weddingDate - Date.now();
 
         const daysElement = document.getElementById("days");
         const hoursElement = document.getElementById("hours");
@@ -31,6 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
         ) {
             return;
         }
+
+        const difference = weddingDate - Date.now();
 
         if (difference <= 0) {
             daysElement.textContent = "00";
@@ -91,32 +91,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
             entryOpened = true;
 
-            /* Start music following the guest's click */
+            /* Start music after the guest clicks */
+
             if (weddingMusic) {
 
                 weddingMusic.volume = 0.35;
 
                 weddingMusic.play().catch(function (error) {
                     console.warn(
-                        "Music could not start. Please use the music button.",
+                        "Music could not start. Use the music button.",
                         error
                     );
                 });
             }
 
-            /* Hide the entry screen */
+            /* Hide entry screen */
+
             if (entryPage) {
                 entryPage.classList.add("entry-hidden");
                 entryPage.style.display = "none";
             }
 
-            /* Unlock scrolling */
+            /* Allow scrolling */
+
             document.body.classList.remove("entry-locked");
             document.body.classList.add("entry-open");
 
             window.scrollTo(0, 0);
 
-            /* Show the main cover */
+            /* Display main cover */
+
             setTimeout(function () {
 
                 if (homePage) {
@@ -220,7 +224,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       5. RSVP GUEST CONTROL
+       5. RSVP GUEST COUNT
+       Keep options 1–5 available for BOTH responses.
        ===================================================== */
 
     const attendanceOptions = document.querySelectorAll(
@@ -235,32 +240,36 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const selectedAttendance = document.querySelector(
-            'input[name="attendance"]:checked'
-        );
+        /*
+           Do not force the guest count to 1.
+           Do not disable the dropdown when declining.
+        */
 
-        const isDeclining = selectedAttendance &&
-            selectedAttendance.value === "Declines with regret";
-
-        if (isDeclining) {
-            guestsInput.value = "1";
-            guestsInput.disabled = true;
-        } else {
-            guestsInput.disabled = false;
-        }
+        guestsInput.disabled = false;
     }
 
     attendanceOptions.forEach(function (option) {
         option.addEventListener("change", updateGuestOptions);
     });
 
+    updateGuestOptions();
+
 
     /* =====================================================
-       6. RSVP FORM SUBMISSION
+       6. RSVP THANK-YOU MESSAGE
        ===================================================== */
 
     const rsvpForm = document.getElementById("rsvpForm");
     const successMessage = document.getElementById("rsvpSuccess");
+
+    /*
+       Keep the thank-you message hidden until submission.
+       Its text is updated below for both responses.
+    */
+
+    if (successMessage) {
+        successMessage.style.display = "none";
+    }
 
     if (rsvpForm && successMessage) {
 
@@ -295,11 +304,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
             .then(function () {
 
-                /* Hide the entire RSVP form */
+                /*
+                   Use the same message for accepting
+                   and declining guests.
+                */
+
+                successMessage.innerHTML = `
+                    <div class="rsvp-thank-you">
+                        <h2>Thank You!</h2>
+                        <p>Your RSVP has been received.</p>
+                        <p>Thank you for letting us know.</p>
+                    </div>
+                `;
+
+                /* Hide the RSVP form */
+
                 rsvpForm.classList.add("rsvp-submitted");
                 rsvpForm.style.display = "none";
 
                 /* Show the thank-you message */
+
                 successMessage.classList.add("rsvp-success-visible");
                 successMessage.style.display = "block";
 
@@ -326,4 +350,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-}); /* IMPORTANT: closes DOMContentLoaded */
+}); /* END DOMContentLoaded */
