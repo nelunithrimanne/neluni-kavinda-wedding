@@ -1,187 +1,211 @@
 
 /* =========================================================
    NELUNI & KAVINDA — WEDDING WEBSITE JAVASCRIPT
+   Wedding Date: 16 January 2027
+   Sri Lanka Time: 11:00 AM
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        1. WEDDING COUNTDOWN
-       16 January 2027 — 11:00 AM Sri Lanka time
        ===================================================== */
 
     const weddingDate = new Date(
         "2027-01-16T11:00:00+05:30"
     ).getTime();
 
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
+
     function updateCountdown() {
 
-        const daysElement = document.getElementById("days");
-        const hoursElement = document.getElementById("hours");
-        const minutesElement = document.getElementById("minutes");
-        const secondsElement = document.getElementById("seconds");
+        const now = Date.now();
+        const distance = weddingDate - now;
 
-        if (
-            !daysElement ||
-            !hoursElement ||
-            !minutesElement ||
-            !secondsElement
-        ) {
-            return;
-        }
+        if (distance <= 0) {
 
-        const difference = weddingDate - Date.now();
+            if (daysElement) daysElement.textContent = "00";
+            if (hoursElement) hoursElement.textContent = "00";
+            if (minutesElement) minutesElement.textContent = "00";
+            if (secondsElement) secondsElement.textContent = "00";
 
-        if (difference <= 0) {
-            daysElement.textContent = "00";
-            hoursElement.textContent = "00";
-            minutesElement.textContent = "00";
-            secondsElement.textContent = "00";
             return;
         }
 
         const days = Math.floor(
-            difference / (1000 * 60 * 60 * 24)
+            distance / (1000 * 60 * 60 * 24)
         );
 
         const hours = Math.floor(
-            (difference / (1000 * 60 * 60)) % 24
+            (distance % (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
         );
 
         const minutes = Math.floor(
-            (difference / (1000 * 60)) % 60
+            (distance % (1000 * 60 * 60)) /
+            (1000 * 60)
         );
 
         const seconds = Math.floor(
-            (difference / 1000) % 60
+            (distance % (1000 * 60)) / 1000
         );
 
-        daysElement.textContent = String(days).padStart(2, "0");
-        hoursElement.textContent = String(hours).padStart(2, "0");
-        minutesElement.textContent = String(minutes).padStart(2, "0");
-        secondsElement.textContent = String(seconds).padStart(2, "0");
+        if (daysElement) {
+            daysElement.textContent = String(days).padStart(2, "0");
+        }
+
+        if (hoursElement) {
+            hoursElement.textContent = String(hours).padStart(2, "0");
+        }
+
+        if (minutesElement) {
+            minutesElement.textContent = String(minutes).padStart(2, "0");
+        }
+
+        if (secondsElement) {
+            secondsElement.textContent = String(seconds).padStart(2, "0");
+        }
     }
 
     updateCountdown();
-    setInterval(updateCountdown, 1000);
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
 
 
     /* =====================================================
-       2. WEDDING WEBSITE ENTRY BUTTON
+       2. ENTRY PAGE
        ===================================================== */
 
     const entryPage = document.getElementById("entryPage");
     const enterStoryButton = document.getElementById("enterStory");
-    const homePage = document.getElementById("home");
+    const homeSection = document.getElementById("home");
 
-    const weddingMusic = document.getElementById("weddingMusic");
-    const musicButton = document.getElementById("musicButton");
-
-    document.body.classList.add("entry-locked");
-
-    let entryOpened = false;
+    if (entryPage) {
+        document.body.classList.add("entry-locked");
+    }
 
     if (enterStoryButton) {
 
         enterStoryButton.addEventListener("click", function () {
 
-            if (entryOpened) {
-                return;
-            }
-
-            entryOpened = true;
-
-            /* Start music after the guest clicks */
-
-            if (weddingMusic) {
-
-                weddingMusic.volume = 0.35;
-
-                weddingMusic.play().catch(function (error) {
-                    console.warn(
-                        "Music could not start. Use the music button.",
-                        error
-                    );
-                });
-            }
-
-            /* Hide entry screen */
-
-            if (entryPage) {
-                entryPage.classList.add("entry-hidden");
-                entryPage.style.display = "none";
-            }
-
-            /* Allow scrolling */
-
             document.body.classList.remove("entry-locked");
             document.body.classList.add("entry-open");
 
-            window.scrollTo(0, 0);
+            if (entryPage) {
+                entryPage.classList.add("entry-hidden");
+            }
 
-            /* Display main cover */
+            if (homeSection) {
+                homeSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
 
-            setTimeout(function () {
-
-                if (homePage) {
-                    homePage.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-                }
-
-            }, 100);
+            // Start wedding music after the visitor enters.
+            playWeddingMusic();
 
         });
     }
 
 
     /* =====================================================
-       3. WEDDING MUSIC BUTTON
+       3. WEDDING MUSIC
        ===================================================== */
 
-    function updateMusicButton() {
+    const weddingMusic = document.getElementById("weddingMusic");
+    const musicButton = document.getElementById("musicButton");
 
-        if (!musicButton || !weddingMusic) {
-            return;
+    function updateMusicButton(isPlaying) {
+
+        if (!musicButton) return;
+
+        if (isPlaying) {
+
+            musicButton.innerHTML = "♫";
+            musicButton.setAttribute(
+                "aria-label",
+                "Pause wedding music"
+            );
+
+            musicButton.setAttribute(
+                "title",
+                "Pause wedding music"
+            );
+
+            musicButton.classList.add("music-playing");
+
+        } else {
+
+            musicButton.innerHTML = "♪";
+            musicButton.setAttribute(
+                "aria-label",
+                "Play wedding music"
+            );
+
+            musicButton.setAttribute(
+                "title",
+                "Play wedding music"
+            );
+
+            musicButton.classList.remove("music-playing");
         }
-
-        const isPlaying = !weddingMusic.paused;
-
-        musicButton.textContent = isPlaying ? "Ⅱ" : "♪";
-
-        musicButton.classList.toggle("playing", isPlaying);
-
-        musicButton.setAttribute(
-            "aria-label",
-            isPlaying ? "Pause wedding music" : "Play wedding music"
-        );
     }
 
-    if (musicButton && weddingMusic) {
+    function playWeddingMusic() {
+
+        if (!weddingMusic) return;
+
+        const playPromise = weddingMusic.play();
+
+        if (playPromise !== undefined) {
+
+            playPromise
+                .then(function () {
+                    updateMusicButton(true);
+                })
+                .catch(function () {
+                    // Some browsers may block automatic playback.
+                    updateMusicButton(false);
+                });
+
+        }
+    }
+
+    if (weddingMusic) {
+
+        weddingMusic.addEventListener("play", function () {
+            updateMusicButton(true);
+        });
+
+        weddingMusic.addEventListener("pause", function () {
+            updateMusicButton(false);
+        });
+
+        weddingMusic.addEventListener("ended", function () {
+            updateMusicButton(false);
+        });
+    }
+
+    if (musicButton) {
 
         musicButton.addEventListener("click", function () {
 
+            if (!weddingMusic) return;
+
             if (weddingMusic.paused) {
 
-                weddingMusic.volume = 0.35;
-
-                weddingMusic.play().catch(function (error) {
-                    console.warn("Unable to play music:", error);
-                    updateMusicButton();
-                });
+                playWeddingMusic();
 
             } else {
+
                 weddingMusic.pause();
             }
 
         });
-
-        weddingMusic.addEventListener("play", updateMusicButton);
-        weddingMusic.addEventListener("pause", updateMusicButton);
-        weddingMusic.addEventListener("ended", updateMusicButton);
-
-        updateMusicButton();
     }
 
 
@@ -189,171 +213,221 @@ document.addEventListener("DOMContentLoaded", function () {
        4. SCROLL ANIMATIONS
        ===================================================== */
 
-    const sections = document.querySelectorAll(
+    const animatedSections = document.querySelectorAll(
         "section:not(.hero)"
     );
 
     if ("IntersectionObserver" in window) {
 
-        const observer = new IntersectionObserver(
-            function (entries) {
+        const sectionObserver = new IntersectionObserver(
+            function (entries, observer) {
 
                 entries.forEach(function (entry) {
 
                     if (entry.isIntersecting) {
+
                         entry.target.classList.add("show");
+
+                        observer.unobserve(entry.target);
                     }
 
                 });
 
             },
-            { threshold: 0.15 }
+            {
+                threshold: 0.12
+            }
         );
 
-        sections.forEach(function (section) {
-            observer.observe(section);
+        animatedSections.forEach(function (section) {
+            sectionObserver.observe(section);
         });
 
     } else {
 
-        sections.forEach(function (section) {
+        // Fallback for older browsers.
+        animatedSections.forEach(function (section) {
             section.classList.add("show");
         });
-
     }
 
 
     /* =====================================================
-       5. RSVP GUEST COUNT
-       Keep options 1–5 available for BOTH responses.
-       ===================================================== */
-
-    const attendanceOptions = document.querySelectorAll(
-        'input[name="attendance"]'
-    );
-
-    const guestsInput = document.getElementById("guestCount");
-
-    function updateGuestOptions() {
-
-        if (!guestsInput) {
-            return;
-        }
-
-        /*
-           Do not force the guest count to 1.
-           Do not disable the dropdown when declining.
-        */
-
-        guestsInput.disabled = false;
-    }
-
-    attendanceOptions.forEach(function (option) {
-        option.addEventListener("change", updateGuestOptions);
-    });
-
-    updateGuestOptions();
-
-
-    /* =====================================================
-       6. RSVP THANK-YOU MESSAGE
+       5. RSVP FORM
        ===================================================== */
 
     const rsvpForm = document.getElementById("rsvpForm");
-    const successMessage = document.getElementById("rsvpSuccess");
+    const rsvpSuccess = document.getElementById("rsvpSuccess");
+    const guestCount = document.getElementById("guestCount");
 
-    /*
-       Keep the thank-you message hidden until submission.
-       Its text is updated below for both responses.
-    */
+    if (rsvpForm) {
 
-    if (successMessage) {
-        successMessage.style.display = "none";
-    }
+        const submitButton = rsvpForm.querySelector(
+            'button[type="submit"], input[type="submit"]'
+        );
 
-    if (rsvpForm && successMessage) {
+        /*
+         * Keep guest selection available for BOTH
+         * accepting and declining responses.
+         */
+
+        if (guestCount) {
+            guestCount.disabled = false;
+        }
+
+        /*
+         * Submit the RSVP to Google Apps Script.
+         */
 
         rsvpForm.addEventListener("submit", function (event) {
 
             event.preventDefault();
 
-            if (!rsvpForm.reportValidity()) {
+            // Prevent duplicate submissions.
+            if (rsvpForm.dataset.submitting === "true") {
                 return;
             }
 
-            const submitButton = rsvpForm.querySelector(
-                ".luxury-rsvp-button"
+            const attendanceInput = rsvpForm.querySelector(
+                'input[name="attendance"]:checked'
             );
 
-            if (!submitButton || submitButton.disabled) {
+            // Check that an attendance option is selected.
+            if (!attendanceInput) {
+
+                alert(
+                    "Please select whether you will attend or decline."
+                );
+
                 return;
             }
 
-            const originalButtonText = submitButton.innerHTML;
+            // Check that a guest count is selected.
+            if (guestCount && !guestCount.value) {
 
-            submitButton.disabled = true;
-            submitButton.innerHTML = "SENDING...";
+                alert("Please select the number of guests.");
 
-            const formData = new URLSearchParams(
-    new FormData(rsvpForm)
-);
+                guestCount.focus();
 
-console.log(
-    "Selected attendance:",
-    formData.get("attendance")
-);
+                return;
+            }
 
-fetch(rsvpForm.action, {
-    method: "POST",
-    body: formData,
-    mode: "no-cors"
-})
+            // Check that the form has a Google Apps Script URL.
+            const formAction = rsvpForm.action;
+
+            if (
+                !formAction ||
+                formAction === window.location.href ||
+                !/^https:\/\/script\.google\.com\//i.test(formAction)
+            ) {
+
+                alert(
+                    "The RSVP form URL is missing or incorrect. " +
+                    "Please check the form action in your HTML."
+                );
+
+                return;
+            }
+
+            const formData = new FormData(rsvpForm);
+
+            // Ensure attendance is sent using the correct field name.
+            formData.set("attendance", attendanceInput.value);
+
+            rsvpForm.dataset.submitting = "true";
+
+            if (submitButton) {
+
+                submitButton.disabled = true;
+
+                if (submitButton.tagName === "INPUT") {
+                    submitButton.value = "SENDING...";
+                } else {
+                    submitButton.textContent = "SENDING...";
+                }
+            }
+
+            /*
+             * no-cors allows the request to be sent to Google
+             * Apps Script without requiring a readable response.
+             *
+             * A no-cors response cannot confirm that the row
+             * was successfully saved in Google Sheets.
+             */
+
+            fetch(formAction, {
+                method: "POST",
+                body: formData,
+                mode: "no-cors"
+            })
             .then(function () {
 
-                /*
-                   Use the same message for accepting
-                   and declining guests.
-                */
-
-                successMessage.innerHTML = `
-                    <div class="rsvp-thank-you">
-                        <h2>Thank You!</h2>
-                        <p>Your RSVP has been received.</p>
-                        <p>Thank you for letting us know.</p>
-                    </div>
-                `;
-
-                /* Hide the RSVP form */
-
+                // Show the existing thank-you area.
                 rsvpForm.classList.add("rsvp-submitted");
+
+                if (rsvpSuccess) {
+
+                    rsvpSuccess.innerHTML = `
+                        <div class="rsvp-thank-you">
+                            <h3>Thank You!</h3>
+                            <p>Your RSVP has been received.</p>
+                            <p>Thank you for letting us know.</p>
+                        </div>
+                    `;
+
+                    rsvpSuccess.classList.add(
+                        "rsvp-success-visible"
+                    );
+
+                    rsvpSuccess.style.display = "block";
+                }
+
+                // Hide the form after submission.
                 rsvpForm.style.display = "none";
 
-                /* Show the thank-you message */
-
-                successMessage.classList.add("rsvp-success-visible");
-                successMessage.style.display = "block";
-
-                successMessage.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
-
             })
-
             .catch(function (error) {
 
                 console.error("RSVP submission error:", error);
 
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
-
                 alert(
-                    "We could not send your RSVP. Please try again."
+                    "Something went wrong while sending your RSVP. " +
+                    "Please try again."
                 );
+
+                rsvpForm.dataset.submitting = "false";
+
+                if (submitButton) {
+
+                    submitButton.disabled = false;
+
+                    if (submitButton.tagName === "INPUT") {
+                        submitButton.value = "SUBMIT RSVP";
+                    } else {
+                        submitButton.textContent = "SUBMIT RSVP";
+                    }
+                }
 
             });
 
         });
     }
 
-}); /* END DOMContentLoaded */
+
+    /* =====================================================
+       6. INITIAL MUSIC BUTTON STATE
+       ===================================================== */
+
+    if (weddingMusic && weddingMusic.paused) {
+        updateMusicButton(false);
+    }
+
+
+    /* =====================================================
+       7. CLEANUP NOTE
+       ===================================================== */
+
+    // The countdown updates every second while this page is open.
+    // No other timers are required.
+
+});
