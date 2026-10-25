@@ -294,14 +294,20 @@ document.addEventListener("DOMContentLoaded", function () {
             submitButton.disabled = true;
             submitButton.innerHTML = "SENDING...";
 
-            const formData = new FormData(rsvpForm);
+            const formData = new URLSearchParams(
+    new FormData(rsvpForm)
+);
 
-            fetch(rsvpForm.action, {
-                method: "POST",
-                body: formData,
-                mode: "no-cors"
-            })
+console.log(
+    "Selected attendance:",
+    formData.get("attendance")
+);
 
+fetch(rsvpForm.action, {
+    method: "POST",
+    body: formData,
+    mode: "no-cors"
+})
             .then(function () {
 
                 /*
