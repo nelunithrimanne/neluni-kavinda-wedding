@@ -329,10 +329,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            const formData = new FormData(rsvpForm);
 
-            // Ensure attendance is sent using the correct field name.
-            formData.set("attendance", attendanceInput.value);
+const formData = new URLSearchParams(
+    new FormData(rsvpForm)
+);
+
+// Ensure attendance is sent using the correct field name.
+formData.set("attendance", attendanceInput.value);
+
 
             rsvpForm.dataset.submitting = "true";
 
@@ -355,11 +359,11 @@ document.addEventListener("DOMContentLoaded", function () {
              * was successfully saved in Google Sheets.
              */
 
-            fetch(formAction, {
-                method: "POST",
-                body: formData,
-                mode: "no-cors"
-            })
+           fetch(formAction, {
+    method: "POST",
+    body: formData,
+    mode: "no-cors"
+})
             .then(function () {
 
                 // Show the existing thank-you area.
